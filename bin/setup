@@ -1,0 +1,50 @@
+#!/usr/bin/env sh
+
+# Set up Rails app. Run this script immediately after cloning the codebase.
+# https://github.com/thoughtbot/guides/tree/master/protocol
+
+# Exit if any subcommand fails
+set -e
+
+# Set up Ruby dependencies via Bundler
+bundle install
+
+# Set up configurable environment variables
+if [ ! -f .env ]; then
+  cp sample.env .env
+fi
+
+# Set up database and add any development seed data
+bundle exec rake db:setup
+
+# Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
+mkdir -p .git/safe
+
+# Pick a port for Foreman
+echo "port: 3000" > .foreman
+
+# Set up DNS via Pow
+if [ -d ~/.pow ]
+then
+  echo 3000 > ~/.pow/`basename $PWD`
+else
+  echo "Pow not set up but the team uses it for this project. Setup: http://goo.gl/RaDPO"
+fi
+
+# Set up staging and production git remotes.
+git remote add staging git@heroku.com:storytime-example-staging.git || true
+git remote add production git@heroku.com:storytime-example-production.git || true
+
+# Join the staging and production apps.
+if heroku join --app storytime-example-staging &> /dev/null; then
+  echo 'You are a collaborator on the "storytime-example-staging" Heroku app'
+else
+  echo 'Ask for access to the "storytime-example-staging" Heroku app'
+fi
+
+if heroku join --app storytime-example-production &> /dev/null; then
+  echo 'You are a collaborator on the "storytime-example-production" Heroku app'
+else
+  echo 'Ask for access to the "storytime-example-production" Heroku app'
+fi
+

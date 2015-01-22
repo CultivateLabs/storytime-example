@@ -1,0 +1,21 @@
+development: &default
+  adapter: postgresql
+  database: storytime-example_development
+  encoding: utf8
+  host: localhost
+  min_messages: warning
+  pool: 2
+  timeout: 5000
+
+test:
+  <<: *default
+  database: storytime-example_test
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: storytime-example_production
+  pool: 5
+  username: storytime-example
+  password: <%= ENV['DB_PASS'] %>
