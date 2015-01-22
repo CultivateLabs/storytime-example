@@ -1,1 +1,1 @@
-Rails.application.config.assets.precompile += %w( leather/hero24.jpg )
+Rails.application.config.assets.precompile += %w( *.jpg *.png )
