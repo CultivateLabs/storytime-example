@@ -5,5 +5,8 @@
   "keywords": ["cms", "rails", "storytime"],
   "env": {
     "SECRET_KEY_BASE": "secretkeybase"
+  },
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
   }
 }
