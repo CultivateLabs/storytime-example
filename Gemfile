@@ -20,10 +20,9 @@ gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 
 gem 'title'
 gem 'uglifier'
 gem 'unicorn'
-gem 'leather', github: 'dvanderbeek/leather', branch: 'master'
 gem 'font-awesome-sass'
 gem 'autoprefixer-rails'
-gem 'storytime'
+gem 'storytime', github: 'flyoverworks/storytime', branch: 'master'
 
 group :development do
   gem 'foreman'
