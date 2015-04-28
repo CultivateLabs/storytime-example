@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/flyoverworks/storytime.git
-  revision: f756d6b802493535b4cc45a5781bbc5287520ab1
+  revision: 7c362cdcf1bfa992514026e784472a1a84a78054
   branch: master
   specs:
     storytime (2.0.0)
